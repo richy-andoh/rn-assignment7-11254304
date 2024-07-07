@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+//import { createDrawerNavigator } from '@react-navigation/drawer';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './screens/HomeScreen';
@@ -11,14 +12,17 @@ import { CartProvider } from './context/CartContext';
 //const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
+// Drawer Navigation
+//const Drawer = createDrawerNavigator();
+
 export default function App() {
   return (
     <CartProvider>
       <NavigationContainer>
-      <SafeAreaProvider>
-        <HomeStack />
-      </SafeAreaProvider>
-    </NavigationContainer>
+        <SafeAreaProvider>
+          <HomeStack />
+        </SafeAreaProvider>
+      </NavigationContainer>
     </CartProvider>
   );
 }
@@ -26,57 +30,33 @@ export default function App() {
 const HomeStack = () => {
   return (
     <Stack.Navigator initialRouteName='Home'>
-      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Checkout" component={CheckoutScreen} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Checkout"
+        component={CheckoutScreen}
+        options={{ headerShown: false }}
+      />
+      
     </Stack.Navigator>
   )
 }
-// function CheckoutTab() {
+
+// const HomeStack = () => {
 //   return (
-//     <Tab.Navigator
-//       screenOptions={({ route }) => ({
-//         tabBarIcon: ({ color, size }) => {
-//           let iconName;
-
-//           if (route.name === 'Checkout') {
-//             iconName = 'cart';
-//           }
-//           return <Ionicons name={iconName} size={size} color={color} />;
-
-//         },
-//         tabBarLabel: ({ focused, color }) => {
-//           let label;
-
-//           if (route.name === 'Checkout') {
-//             label = 'Checkout';
-//           }
-
-//           return (
-//             <Text style={{ color, fontSize: 16, paddingLeft: 8 }}>{label}</Text>
-//           );
-//         },
-//       })}
-//       tabBarOptions={{
-//         activeTintColor: 'tomato',
-//         inactiveTintColor: 'gray',
-//         tabBarLabelStyle: {
-//           fontSize: 16,
-//         },
-//         tabBarIconStyle: {
-//           marginRight: -10,
-//         },
-//         tabBarStyle: {
-//           height: 100,
-//           paddingBottom: 30,
-//           paddingTop: 10,
-
-//         },
-//       }}
-//     >
-//       <Tab.Screen name="Checkout" component={CheckoutScreen}  options={{ headerShown: false}}/>
-//     </Tab.Navigator>
-//   );
+//     <Drawer.Navigator initialRouteName='Home'>
+//       <Drawer.Screen
+//         name="Home"
+//         component={HomeScreen}
+//       />
+      
+//     </Drawer.Navigator>
+//   )
 // }
+
 
 const styles = StyleSheet.create({
   container: {

@@ -5,16 +5,29 @@ import Logo from "../assets/Logo.png";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import { TouchableOpacity } from "react-native";
 import { useCart } from "../context/CartContext";
+import { useNavigation } from "@react-navigation/native";
+import SideMenu from "./Sidemenu";
+import { useState } from "react";
 
-const Header = ({ navigation }) => {
+const Header = () => {
     const { cartItems } = useCart();
     const cartItemCount = cartItems.length;
 
+    const navigation = useNavigation();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <View style={{ margin: 10 }}>
+            <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} navigation={navigation} />
             <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 15 }}>
                 <View>
-                    <Ionicons name="menu-outline" size={33} />
+                    <TouchableOpacity onPress={toggleMenu}>
+                        <Ionicons name={isMenuOpen ? "close-outline" : "menu-outline"} size={33} />
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <Image source={Logo} style={{ cursor: "pointer" }} />
@@ -31,7 +44,7 @@ const Header = ({ navigation }) => {
                                     <Text style={styles.cartItemCountText}>{cartItemCount}</Text>
 
                                 </View>
-                                ) : (null)
+                            ) : (null)
                             }
 
                         </TouchableOpacity>
