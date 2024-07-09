@@ -21,7 +21,7 @@ const Header = () => {
     };
 
     return (
-        <View style={{ margin: 10 }}>
+        <View style={{ margin: 10, zIndex: 1000 }}>
             <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} navigation={navigation} />
             <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 15 }}>
                 <View>

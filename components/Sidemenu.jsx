@@ -29,6 +29,7 @@ const SideMenu = ({ isOpen, toggleMenu, navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handleNavigation('Home')}>
                     <Text style={styles.menuItem}>Eric Atsu</Text>
+
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handleNavigation('')}>
                     <Text style={styles.menuItem}>Store</Text>
@@ -60,21 +61,24 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: -25,
         width: width,
-        height: 200,
-        zIndex: 1000,
+        height: 700,
+        zIndex: 1,
+
     },
     menu: {
         flex: 1,
-        backgroundColor: '#fff',
         padding: 20,
+        backgroundColor: '#fff',
         width: width * 0.8,
+        height: 200
     },
     closeIcon: {
         alignSelf: 'flex-end',
     },
     menuItem: {
-        fontSize: 18,
-        marginVertical: 10,
+        fontSize: 22,
+        marginVertical: 16,
+        paddingVertical: 10
     },
 });
 

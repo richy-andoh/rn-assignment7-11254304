@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
 //import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { CartProvider } from './context/CartContext';
+import ProductDetailScreen from './screens/ProductDetailScreen';
 
 //const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -38,6 +39,11 @@ const HomeStack = () => {
       <Stack.Screen
         name="Checkout"
         component={CheckoutScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductDetailScreen"
+        component={ProductDetailScreen}
         options={{ headerShown: false }}
       />
       
