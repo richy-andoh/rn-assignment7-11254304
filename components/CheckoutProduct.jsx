@@ -19,7 +19,7 @@ const CheckoutItem = ({ navigation, id, title, description, price, image }) => {
         <View style={[styles.container]}>
             <View>
                 <TouchableOpacity onPress={() => navigation.navigate("ProductDetailScreen", {
-                    Product: {
+                    product: {
                         id,
                         title,
                         description,
@@ -31,7 +31,7 @@ const CheckoutItem = ({ navigation, id, title, description, price, image }) => {
                 </TouchableOpacity>
             </View>
 
-            <View style={{ width: 200, marginLeft: 10 }}>
+            <View style={{ width: 190, marginLeft: 10, paddingRight: 10 }}>
                 <Text style={styles.name}>{title}</Text>
                 <Text style={styles.description} numberOfLines={3}>{description}</Text>
                 <Text style={styles.price}>$ {price}</Text>
@@ -74,7 +74,7 @@ export default CheckoutProduct;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //width: width,
+        width: width,
         padding: 10,
         marginHorizontal: 10,
         alignContent: "center",
@@ -101,11 +101,13 @@ const styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: 'bold',
         marginTop: 10,
+        marginRight: 10
     },
     description: {
         opacity: 0.7,
         fontSize: 16,
-        marginTop: 6
+        marginTop: 6,
+        marginRight: 10
     },
     price: {
         fontSize: 18,

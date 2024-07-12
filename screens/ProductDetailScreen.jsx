@@ -161,7 +161,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
 
                     </TouchableOpacity>
                 ) : ""}
-                <View>
+                <View style={{ marginRight: 15}}>
                     <Ionicons name="heart-outline" color="white" size={40} />
                 </View>
             </View>
