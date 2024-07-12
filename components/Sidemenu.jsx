@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions } from '
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const { width } = Dimensions.get('window');
-//const { height } = Dimensions.get("window")
 
 const SideMenu = ({ isOpen, toggleMenu, navigation }) => {
     const [animation] = useState(new Animated.Value(isOpen ? 0 : -width));
@@ -29,7 +28,7 @@ const SideMenu = ({ isOpen, toggleMenu, navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handleNavigation('Home')}>
                     <Text style={styles.menuItem}>Eric Atsu</Text>
-
+                   <View style={{ height: 0.8, width: 90, backgroundColor: "red"}}></View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handleNavigation('')}>
                     <Text style={styles.menuItem}>Store</Text>
@@ -61,8 +60,8 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: -25,
         width: width,
-        height: 700,
-        zIndex: 1,
+        height: 900,
+        zIndex: 1000,
 
     },
     menu: {

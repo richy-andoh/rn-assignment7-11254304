@@ -19,6 +19,7 @@ export const CartProvider = ({ children }) => {
         loadCart();
     }, []);
 
+
     const addToCart = async (item) => {
         try {
             const updatedCartItems = [...cartItems, item];

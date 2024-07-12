@@ -1,10 +1,9 @@
-import { View, Text, Button, FlatList, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
 import addCircle from "../assets/add_circle.png";
 import { useCart } from '../context/CartContext';
 import { useNavigation } from '@react-navigation/native';
 
-const width = Dimensions.get('window');
 
 const ProductItem = ({ product }) => {
     const { addToCart } = useCart();
@@ -74,8 +73,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
-        marginTop: 20,
-        alignContent: "center"
+        marginHorizontal: 5,
+        marginVertical: 20,
+        alignContent: "center",
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        // Android elevation property
+        elevation: 4,
+
     },
     product: {
         marginBottom: 20,
@@ -89,7 +96,6 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     image: {
-        width: width,
         height: 250,
         borderRadius: 5,
     },

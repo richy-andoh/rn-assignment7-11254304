@@ -1,8 +1,9 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { Dimensions, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import Product from '../components/Product';
 
+const width = Dimensions.get('window').width;
 
 export default function HomeScreen({ navigation }) {
     return (
@@ -19,7 +20,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+        width: width
     },
 
 });

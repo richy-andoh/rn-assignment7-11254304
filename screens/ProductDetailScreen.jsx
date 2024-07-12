@@ -1,7 +1,7 @@
 import { StyleSheet, View, Image, Text, TouchableOpacity, Dimensions, ScrollView } from "react-native";
 import { useCart } from "../context/CartContext";
 //import SideMenu from "../components/Sidemenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import shoppingBag from "../assets/shoppingBag.png";
 import Logo from "../assets/Logo.png";
@@ -24,6 +24,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
     const { product } = route.params;
     const { addToCart, cartItems } = useCart();
     const cartItemCount = cartItems.length;
+    const [isInCart, setIsInCart] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     console.log(product);
@@ -36,6 +37,22 @@ const ProductDetailScreen = ({ route, navigation }) => {
         addToCart(product);
     };
 
+
+    const checkProductInCart = async () => {
+        try {
+            const cart = await AsyncStorage.getItem('cart');
+            if (cart) {
+                cartItems = JSON.parse('cart');
+                setIsInCart(cartItems.some((item) => item.id === product.id));
+            }
+        } catch (error) {
+            console.log("Error checking product in cart", error)
+        }
+    }
+
+    useEffect(() => {
+        checkProductInCart();
+    }, []);
 
 
     return (
@@ -72,14 +89,14 @@ const ProductDetailScreen = ({ route, navigation }) => {
                     </View>
                 </View>
             </View>
-            <ScrollView >
+            <ScrollView>
                 <View style={styles.detail}>
                     <Image source={{ uri: product.image }} style={styles.productImage} />
 
                     <View style={{ marginHorizontal: 20 }}>
-                        <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignContent: "center"}}>
+                        <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignContent: "center" }}>
                             <Text style={styles.productName} numberOfLines={1}>{product.title}</Text>
-                            <Image source={Export}  style={{ height: 33, width: 33 }}/>
+                            <Image source={Export} style={{ height: 31, width: 31 }} />
                         </View>
                         <Text style={styles.productDescription} numberOfLines={1}>{product.description}</Text>
                         <Text style={styles.productPrice}>${product.price}</Text>
@@ -135,15 +152,20 @@ const ProductDetailScreen = ({ route, navigation }) => {
             </ScrollView>
 
             <View style={[styles.footer]}>
-                <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginHorizontal: 10 }}>
-                   <Ionicons name="add" color="white" size={40} />
-                    <Text style={{ color: "white", marginRight: 30, marginTop: 10, fontSize: 20 }}>Add to Basket</Text>
-                </View>
+                {!isInCart ? (
+                    <TouchableOpacity onPress={ handleAddToCart }>
+                        <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginHorizontal: 10 }}>
+                            <Ionicons name="add" color="white" size={40} />
+                            <Text style={{ color: "white", marginRight: 30, marginTop: 10, fontSize: 20 }}>Add to Basket</Text>
+                        </View>
+
+                    </TouchableOpacity>
+                ) : ""}
                 <View>
                     <Ionicons name="heart-outline" color="white" size={40} />
                 </View>
             </View>
-        </View>
+        </View >
     );
 };
 
@@ -185,12 +207,13 @@ const styles = StyleSheet.create({
 
     productName: {
         fontSize: 20,
+        marginVertical: 10,
+        marginRight: 10
     },
 
     productDescription: {
         marginVertical: 10,
         fontSize: 19,
-
     },
 
     productPrice: {
