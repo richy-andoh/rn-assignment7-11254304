@@ -52,16 +52,19 @@ This is a React Native application that allows users to view a list of products,
 
 ## Screenshots
 
+
 - **HomeScreen**
 
 
 ![HomeScreen](/assets/screen1.png)  ![HomeScreen](/assets/screen5.png)  ![HomeScreen](/assets/screen2.png) 
 
 
+
 - **ProductDetailScreen**
 
 
 ![ProductDetailScreen](/assets/screen4.png) 
+
 
 
 - **CartScreen**
@@ -74,7 +77,8 @@ This is a React Native application that allows users to view a list of products,
 ## Installation and Usage
 
 ```
-1. Clone the repository: `git clone https://github.com/richy-andh/rn-assignment7-11254304.git`
+1. Clone the repository: `git clone https://github.com/richy-andoh/rn-assignment7-11254304.git`
+
 2. Navigate to the project directory: `cd rn-assignment7-11254304`
 
 3. Install dependencies: `npm install`
